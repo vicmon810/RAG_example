@@ -66,4 +66,5 @@ prompt = f"""
 
 ans = rag.ask_ollama(prompt)
 print("="*50)
-print(ans)
+print("model response: \t",ans)
+print("-"*50)
