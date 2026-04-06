@@ -1,0 +1,52 @@
+Help to establish strong engineering patterns as AI capability grows across TVNZ.
+The opportunity - Te tūranga
+
+
+As a Senior AI Engineer, you will partner closely with an AI Product Owner who leads discovery and prioritisation. Your role is to design, implement, integrate and operate AI solutions, choosing the right approach for each use case. You will help reduce time-to-value for AI initiatives through reuse, standardisation, and sound engineering practices,
+
+
+You will be responsible for ensuring AI solutions are secure, scalable, reliable and maintainable. This is a senior, hands-on engineering role focused on delivering AI solutions that work in practice.
+
+
+Your focus will be on
+
+Design, deliver, and operate AI-enabled solutions that support content, commercial, and operational workflows across TVNZ, selecting the most appropriate approach for each use case (custom build, managed service, or off-the-shelf tool)
+
+Implement and integrate generative AI and automation services (including AWS-native capabilities and approved third-party tools) into existing TVNZ systems in a secure and scalable way
+
+
+This is an 18 Month Fixed term contract
+
+
+What we're looking for - Tā mātou e kimi nei
+
+To be successful in this role, we require the following.
+
+Strong technical background in software engineering.
+
+Experience designing and implementing AI architectures across multiple environments (cloud, APIs, and data platforms).
+
+Proficiency with AWS services and API integration (ie. S3, Lambda, SageMaker,Bedrock, API Gateway)
+
+Strong understanding of secure coding practices, including identity and access management.
+
+Proficiency in TypeScript, with prior experience in languages such as JavaScript, HTML/CSS, C#, or Java.
+
+Experience designing, implementing, and maintaining CI/CD pipelines and scalable codebases.
+
+Familiarity with building and operating AI agents, automations, and workflow-driven systems.
+
+Practical understanding of generative AI, natural language processing, and computer vision in applied settings.
+
+Understanding of AI production considerations such as monitoring, versioning, and lifecycle management.
+
+Strong documentation, testing, and problem-solving skills.
+
+Ability to collaborate effectively with product, data, and engineering teams to move solutions from prototype to production.
+
+8+ years of experience in software engineering and/or applied AI roles.
+
+Curiosity and willingness to learn and work with AI platforms at scale, including lowcode, no-code, or product-based AI tools (e.g. n8n, Flowise).
+
+Tono mai |Apply Now - We will be reviewing applications regularly and may withdraw the role at anytime.
+
