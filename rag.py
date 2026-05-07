@@ -11,7 +11,7 @@ from config import settings
 
 
 def get_embed_model():
-    return SentenceTransformer(settings.embed_model, device="cpm")
+    return SentenceTransformer(settings.EMBED_MODEL, device="cpu")
 
 
 def chunk_text(text, chunk_size=300, overlap=40):
@@ -64,13 +64,13 @@ def build_index():
     index = faiss.IndexFlatIP(dimension)
     index.add(embeddings)
 
-    index_dir.makedir(parents=True, exist_ok=True)
+    index_dir.mkdir(parents=True, exist_ok=True)
     faiss.write_index(index, str(settings.INDEX_FILE))
 
-    with open(settings.CHUNK_FILE, "w", encoding="uft-8") as f:
-        json.dump(records, f, ensure_ascii=False, index=2)
+    with open(settings.CHUNK_FILE, "w", encoding="utf-8") as f:
+        json.dump(records, f, ensure_ascii=False, indent=2)
 
-    with open(settings.META_FILE, "w", encoding="uft-8") as f:
+    with open(settings.META_FILE, "w", encoding="utf-8") as f:
         json.dump(
             {
                 "embedding_model": settings.EMBED_MODEL,
@@ -107,7 +107,9 @@ def load_index():
 
 def search(query: str, top_k: int = settings.TOP_K) -> list[dict]:
     index, records, meta = load_index()
+
     model = SentenceTransformer(meta["embedding_model"], device="cpu")
+
     query_vec = model.encode(
         [query], convert_to_numpy=True, normalize_embeddings=meta["normalize"]
     ).astype("float32")
@@ -122,7 +124,7 @@ def search(query: str, top_k: int = settings.TOP_K) -> list[dict]:
             continue
 
         item = records[idx]
-        requests.append(
+        results.append(
             {
                 "score": float(score),
                 "doc_name": item["doc_name"],
@@ -154,6 +156,10 @@ def build_prompt(query: str, results: list[dict]) -> str:
 
 def ask_ollama(prompt, model="deepseek-r1:1.5b"):
     host = settings.OLLAMA_HOST
+    # print(host)
+    if not host.startswith(('http://', 'https://')):
+        host = f"http://{host}"
+    host = host.rstrip('/')
     response = requests.post(
         f"{host}/api/generate",
         json={"model": model, "prompt": prompt, "stream": False, "keep_alive": -1},
@@ -165,7 +171,7 @@ def ask_ollama(prompt, model="deepseek-r1:1.5b"):
 
 
 def answer_query(
-    query: str, top_k: int = settings.TOP_K, llm_model: str = "deepseek_r1:1.5b"
+    query: str, top_k: int = settings.TOP_K, llm_model: str = "deepseek-r1:1.5b"
 ):
     results = search(query=query, top_k=top_k)
     prompt = build_prompt(query=query, results=results)

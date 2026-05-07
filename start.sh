@@ -13,7 +13,7 @@ source llm/bin/activate
 
 pip install --upgrade pip
 
-if [-f "requirements.txt"]; then
+if [! -f "llm/.installed"]; then
     echo "Installing dependencies " 
     pip install -r requirements.txt 
 else
