@@ -2,19 +2,7 @@ import requests
 from config import settings
 from src.agent.code_cleaning import extract_python_code
 
-def clean_code(raw: str)-> str:
-    text = raw.strip()
 
-    if text.startswith("```python"):
-        text = text.removeprefix("```python").strip()
-
-    if text.startswith("```"):
-        text = text.removeprefix("```").strip()
-
-    if text.endswith("```"):
-        text = text.removesuffix("```").strip()
-
-    return text 
 
 
 def generate_code(task:str, context:str, model:str | None=None)-> str:
@@ -26,7 +14,7 @@ your are a Python data science coding specialist
 your job is to write a complete executabel Python script.
 
 Task:
-{task}
+{task} 
 
 Retrieved context:
 {context}
@@ -54,6 +42,10 @@ Rules:
     response.raise_for_status()
 
     raw = response.json()["response"]
-    return extract_python_code(raw)
+    code =  extract_python_code(raw)
 
-
+    return {
+        "raw_model_output": raw,
+        "generated_code": code,
+        "model": model,
+    }
