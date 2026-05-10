@@ -1,4 +1,33 @@
 __pycache__/ 
+note/ 
+llm/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+llm/
+venv/
+.env/
+.venv/
+
+# Runtime outputs
+runs/
+index/
+indexes/
+*.index
+
+# Environment variables
+.env
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
  
 llm/
 .DS_Store
