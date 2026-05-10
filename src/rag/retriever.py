@@ -1,4 +1,4 @@
-from rag import search 
+from src.rag.core import search 
 from config import settings
 def retrieve_context(query:str, top_k: int = 3) -> str:
     results = search(query=query, top_k=top_k)
