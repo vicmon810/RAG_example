@@ -1,5 +1,9 @@
 #!/bin/bash 
 
+<<<<<<< HEAD
+python app.py
+
+=======
 set -e #error warning
 
 echo "== Starting RAG system ==" 
@@ -32,3 +36,4 @@ ollama run qwen3.5:0.8 "" > /dev/null 2>&1 || true
 
 echo "Running "
 python app.py
+>>>>>>> 2d011645342db4e844cd6c6a421fb2eef2458268

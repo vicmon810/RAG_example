@@ -28,3 +28,7 @@ indexes/
 .DS_Store
 .vscode/
 .idea/
+ 
+llm/
+.DS_Store
+
