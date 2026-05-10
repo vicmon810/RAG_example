@@ -8,7 +8,8 @@ class Settings(BaseSettings):
     TOP_K: int = 3
 
     OLLAMA_HOST: str = "http://localhost:11434"
-    LLM_MODEL: str = "deepseek-r1:1.5b"
+    LLM_MODEL: str =  "qwen2.5-coder:0.5b"
+    #"deepseek-r1:1.5b"
     EMBED_MODEL: str = "all-MiniLM-L6-v2"
 
     @property

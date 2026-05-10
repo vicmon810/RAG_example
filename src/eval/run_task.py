@@ -57,7 +57,7 @@ def run_task(task_path: str, max_repairs: int = 1):
     code = generation["generated_code"]
     raw_model_output = generation["raw_model_output"]
     model = generation["model"]
-
+    print(f"\n===model: {model}===\n")
     attempt_1_code_path = runs_dir / f"{run_id}_attempt_1.py"
     attempt_1_code_path.write_text(code, encoding="utf-8")
 
