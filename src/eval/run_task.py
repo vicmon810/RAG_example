@@ -8,6 +8,7 @@ from src.agent.code_agent import generate_code
 from src.agent.repair_agent import repaired_code
 from src.eval.classifier import classify_failure
 from src.eval.correctness import check_correctness
+from src.eval.trajectory_exporter import append_trajectory
 
 def execute_python_file(code_path: Path, timeout: int = 30) -> dict:
     start = time.time()
@@ -119,7 +120,11 @@ def run_task(task_path: str, max_repairs: int = 1):
         final_stdout = attempt_2_result["stdout"]
         final_stderr = attempt_2_result["stderr"]
         final_failure_type = attempt_2_failure_type
-    correctness = check_correctness(task_path, final_stdout)
+    try:    
+        correctness = check_correctness(task_path, final_stdout)
+    except Exception as e:
+        raise(f"Correctness check failed : {e}")
+        correctness = False
     log = {
         "run_id": run_id,
         "task_path": task_path,
@@ -156,6 +161,8 @@ def run_task(task_path: str, max_repairs: int = 1):
         json.dumps(log, indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
+
+    append_trajectory(log)
 
     return log
 

@@ -41,7 +41,7 @@ def expected_path_for_task(task_path: str) -> Path:
 def check_correctness(task_path: str, stdout:str) -> dict:
     expect_path = expected_path_for_task(task_path)
 
-    if not expect_path.exit():
+    if not expect_path.exists():
         return{
             "has_expected_output": False,
             "correct": None,

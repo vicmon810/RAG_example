@@ -31,7 +31,7 @@ def run_benchmark(task_dir: str = "tasks", max_repairs: int = 1):
             "model": log["model"],
             "initial_success": inital["success"],
             "initial_failure_type": inital["failure_type"],
-            "fianl_success": final["success"],
+            "final_success": final["success"],
             "final_failure_type": final["failure_type"],
             "repaired": final["repaired"],
             "final_stdout": final["stdout"],
@@ -42,21 +42,22 @@ def run_benchmark(task_dir: str = "tasks", max_repairs: int = 1):
 
         print(
             f"initial={item['initial_success']}",
-            f"final={item['fianl_success']}",
+            f"final={item['final_success']}",
             f"failuer={item['final_failure_type']}",
             f"repaired={item['repaired']}"
         )
 
     total = len(results)
 
-    initial_success_count = sum(r["initial_success"] for r in results)
-    final_success_count  = sum(r["final_success"] for r in results)
+    initial_success_count = sum(r.get("initial_success") for r in results)
+
+    final_success_count  = sum(r.get("final_success") for r in results)
     repaired_success_count = sum(
         (not r["initial_success"]) and r["final_success"]
         for r in results
     )
 
-    failure_counter = Counter(r["final_failure_type"] for r in results)
+    failure_counter = Counter(r.get("final_failure_type") for r in results)
 
     summary = {
         "benchmark_id": benchmark_id,
